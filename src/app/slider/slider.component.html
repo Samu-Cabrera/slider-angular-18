@@ -1,0 +1,38 @@
+@if (imagenes && imagenes.length > 0) {
+    <div class="slider__container">
+        @for (imagen of imagenes; track $index; let i = $index) {
+            <img 
+                class="fade"
+                [src]="imagen.imgUrl" 
+                [alt]="imagen.imgAlt"
+                [ngClass]="{'img-active': selectIndex === i}">
+        }
+
+        @if (indicador){
+            <div class="slider__dot-container">
+                @for (dov of imagenes; track $index; let i = $index) {
+                    <span
+                        class="dot"
+                        [ngClass]="{'active': selectIndex === i}"
+                        (click)="selectImages(i)">
+                    </span>
+                }
+            </div>
+        }
+
+        @if(controles){
+            <button
+                (click)="onPrevClick()"
+                class="btn-slider btn-prev">
+                <i class="ri-arrow-left-circle-fill icon-slider icon-prev"></i>
+            </button>
+
+            <button 
+                (click)="onNextClick()"
+                class="btn-slider btn-next">
+                <i class="ri-arrow-right-circle-fill icon-slider icon-next"></i>
+            </button>
+        }
+
+    </div>
+}
